@@ -5,6 +5,11 @@
     <button @click="changeName">修改名字</button>
     <button @click="changeAge">修改年龄</button>
     <button @click="showTel">查看联系方式</button>
+    <hr>
+    <h2>测试1：{{a}}</h2>
+    <h2>测试2：{{c}}</h2>
+    <h2>测试3：{{d}}</h2>
+    <button @click="b">测试</button>
   </div>
 </template>
 
@@ -14,8 +19,20 @@
     beforeCreate(){
       console.log('beforeCreate')
     },
+    data(){
+      return {
+        a:100,
+        c:this.name,
+        d:900,
+        age:90
+      }
+    },
+    methods:{
+      b(){
+        console.log('b')
+      }
+    },
     setup(){
-      console.log(this) //setup中的this是undefined，Vue3在弱化this了
       // 数据，原来是写在data中的，此时的name、age、tel都不是响应式的数据
       let name = '张三'
       let age = 18
@@ -36,6 +53,9 @@
 
       // 将数据、方法交出去，模板中才可以使用
       return {name,age,tel,changeName,changeAge,showTel}
+
+      // setup的返回值也可以是一个渲染函数
+      // return ()=>'哈哈'
     }
   }
 </script>
